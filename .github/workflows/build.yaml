@@ -18,11 +18,9 @@ jobs:
           with:
             name: reports
             path: reports
-        - uses: actions/checkout@v2
         - name: Install NPM dependencies
           run: |
             npm install --production --unsafe-perm
-        - uses: actions/checkout@v2
         - name: build-push
           uses: docker/build-push-action@v1
           with:
