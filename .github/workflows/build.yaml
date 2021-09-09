@@ -9,6 +9,18 @@ jobs:
     build:
         runs-on: ubuntu-latest
         steps:
+        - uses: sburris/dependency-check-action@master
+          with:
+          Project-Name: WebServer
+        - name: Archive dependency check reports
+          uses: actions/upload-artifact@v1
+          with:
+            name: reports
+            path: reports
+        - uses: actions/checkout@v2
+        - name: Install NPM dependencies
+          run: |
+            npm install --production --unsafe-perm
         - uses: actions/checkout@v2
         - name: build-push
           uses: docker/build-push-action@v1
@@ -18,6 +30,11 @@ jobs:
             registry: docker.io
             repository: lucilecomba/cd
             tag_with_sha: true
+        - name: Archive dependency check reports
+          uses: actions/upload-artifact@v1
+          with:
+            name: reports
+            path: reports
     sonarcloud:
         runs-on: ubuntu-latest
         steps:
