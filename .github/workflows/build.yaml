@@ -11,7 +11,7 @@ jobs:
         steps:
         - uses: sburris/dependency-check-action@master
           with:
-          Project-Name: WebServer
+            Project-Name: WebServer
         - name: Archive dependency check reports
           uses: actions/upload-artifact@v1
           with:
@@ -30,11 +30,6 @@ jobs:
             registry: docker.io
             repository: lucilecomba/cd
             tag_with_sha: true
-        - name: Archive dependency check reports
-          uses: actions/upload-artifact@v1
-          with:
-            name: reports
-            path: reports
     sonarcloud:
         runs-on: ubuntu-latest
         steps:
